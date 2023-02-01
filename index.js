@@ -87,4 +87,13 @@ var finances = [
   ['Feb-2017', 671099],
 ];
 
+// Create variables 
+let netTotal = 0; // Total profit/loss
+let change = 0; // Change between consecutive months
+let totalChange = 0; // Total change over the period
+let avgChange = 0; // Average change over the period
+let gtIncreaseVal = 0; // Greatest increase in profits
+let gtIncreaseMonth = []; // Month with greatest increase in profits
+let gtDecreaseVal = Infinity; // Greatest decrease in profits
+let gtDecreaseMonth = []; // Month with greatest decrease in profits
 
