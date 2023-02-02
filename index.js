@@ -87,13 +87,30 @@ var finances = [
   ['Feb-2017', 671099],
 ];
 
-// Create variables 
-let netTotal = 0; // Total profit/loss
-let change = 0; // Change between consecutive months
-let totalChange = 0; // Total change over the period
-let avgChange = 0; // Average change over the period
-let gtIncreaseVal = 0; // Greatest increase in profits
-let gtIncreaseMonth = []; // Month with greatest increase in profits
-let gtDecreaseVal = Infinity; // Greatest decrease in profits
-let gtDecreaseMonth = []; // Month with greatest decrease in profits
+
+// Log the title Financial Analysis 
+
+console.log("Financial Analysis");
+console.log("---------------------------");
+
+// Calculate the total number of months in the dataset
+let totalMonths = finances.length;
+console.log("Total months: " + totalMonths);
+
+// Calculate the total profit-loss
+let netTotalProfitLoss = 0;
+for (let i = 0; i < totalMonths; i++) {
+    netTotalProfitLoss += finances[i][1];
+}
+console.log("The Net Total Profit/Loss: " + netTotalProfitLoss);
+
+// Calculate the average *change* in profit-loss
+const avgChanges = finances.reduce((acc, [date, amount], i, arr) => {
+
+// Calculate the difference between the current amount and the next amount
+  if (i < arr.length - 1) acc.push(amount - arr[i + 1][1]);
+  return acc;
+}, []);
+
+
 
