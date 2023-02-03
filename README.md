@@ -18,7 +18,7 @@ The job was to calculate and display company's finances in console:
 
 ## Usage
 
-View the report by clicking this link ---> 
+View the report by clicking this link ---> [Report](https://ivonamaria.github.io/Console-Finances/)
 
 ![My Image](/img/console-results.png)
 
