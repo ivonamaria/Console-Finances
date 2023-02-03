@@ -87,30 +87,48 @@ var finances = [
   ['Feb-2017', 671099],
 ];
 
+// Total number of months calculated using .length
+let totalNumberOfMonths = finances.length;
 
-// Log the title Financial Analysis 
-
-console.log("Financial Analysis");
-console.log("---------------------------");
-
-// Calculate the total number of months in the dataset
-let totalMonths = finances.length;
-console.log("Total months: " + totalMonths);
-
-// Calculate the total profit-loss
-let netTotalProfitLoss = 0;
-for (let i = 0; i < totalMonths; i++) {
-    netTotalProfitLoss += finances[i][1];
+// Calculated total profit using for loop
+let total = 0;
+for (let i = 0; i < finances.length; i++) {
+  total += finances[i][1];
 }
-console.log("The Net Total Profit/Loss: " + netTotalProfitLoss);
 
-// Calculate the average *change* in profit-loss
-const avgChanges = finances.reduce((acc, [date, amount], i, arr) => {
+// Array of monthly profits using push method (adds elements to the end of an array and returns the new length of the array)
+let changes = [];
+for (let i = 0; i < finances.length - 1; i++) {
+  changes.push(finances[i + 1][1] - finances[i][1]);
+}
 
-// Calculate the difference between the current amount and the next amount
-  if (i < arr.length - 1) acc.push(amount - arr[i + 1][1]);
-  return acc;
-}, []);
+// Total of all changes in profits to calculate the average **change**
+let totalOfChanges = 0;
+for (let i = 0; i < changes.length; i++) {
+  totalOfChanges += changes[i];
+}
+
+// Average change using toFixed syntax
+let averageChange = (totalOfChanges/changes.length).toFixed(2);
+
+// Gt increase in profits by implementing reduce method nad Math.max() static method 
+let greatestIncrease = changes.reduce((a, b) => Math.max(a, b));
+
+// Month which corresponds to the greatest increase in profits
+let monthGreatestIncrease = changes.indexOf(greatestIncrease) + 1;
+
+// Gt decrease in profits by using reduce and Math.min() static method returns the smallest of the numbers given as input parameters
+let greatestDecrease = changes.reduce((a, b) => Math.min(a, b));
+
+// Month that corresponds to the gt decrease in profits
+let monthGreatestDecrease = changes.indexOf(greatestDecrease) + 1;
 
 
-
+// Report to display in console 
+console.log("Financial Analysis");
+console.log("-------------------------------");
+console.log("Total Months:", totalNumberOfMonths);
+console.log("Total $:", total);
+console.log("Average Change $:", averageChange);
+console.log("Greatest Increase in Profits:", finances[monthGreatestIncrease][0], "($" + greatestIncrease + ")");
+console.log("Greatest Decrease in Profits:", finances[monthGreatestDecrease][0], "($" + greatestDecrease + ")");
